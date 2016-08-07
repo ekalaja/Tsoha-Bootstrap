@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+{% block content %}
+<h1>getName</h1>
+
+<table class="table table-striped table-bordered">
+    <thead>
+        <tr>
+            <th>Nimi</th>
+            <th>Kunto</th>
+            <th>Omistaja</th>
+            <th>Vaihtokohde</th>
+            <th></th>
+        </tr>
+    </thead>
+
+    <tbody>
+        <tr>
+            <td>getTavara</td>
+            <td>getKunto</td>
+            <td>getKayttajaTunnus</td>
+            <td>getKohdekt</td>
+            <th><a class="btn btn-default btn-sm" href="#">Lukitse</a></th>
+
+        </tr>
+    </tbody>
+</table>
+
+<br>
+<h3>Tarjoa vaihtoa</h3>
+<form action="action_page.php">
+    Vaihto ehdotus:<br>
+    <select>
+        <option value="tavarat">getOmatTavarat</option>
+    </select>
+    <input type="submit" value="Tarjoa">
+</form>
+{% endblock %}

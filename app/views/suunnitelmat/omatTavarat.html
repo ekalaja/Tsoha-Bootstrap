@@ -1,0 +1,52 @@
+{% extends "base.html" %}
+{% block content %}
+<h1>Omat tavarat</h1>
+
+<table class="table table-striped table-bordered">
+    <thead>
+        <tr>
+            <th>Nimi</th>
+            <th>Kunto</th>
+            <th>Vaihtokohde</th>
+            <th>Lisäyspäivä</th>
+            <th>Tila</th>
+            <th></th>
+        </tr>
+    </thead>
+
+    <tbody>
+        <tr>
+            <td>getTavara</td>
+            <td>getKunto</td>
+            <td>getKohdeJosLaitettu</td>
+            <td>getTime</td>
+            <td><label class="label label-danger">lukittu?</label></td>
+            <td><a class="btn btn-default btn-sm" href="#">Poista</a></td>
+        </tr>
+    </tbody>
+</table>
+
+<h3>Lisää tavara</h3>
+<table>
+    <thead>
+        <tr>
+            <th>Nimi</th>
+            <th>Kunto</th>
+            <th>Vaihtokohde</th>
+            <th></th>
+        </tr>
+    </thead>
+
+    <tbody>
+        <tr>
+
+            <td> <select><option value="tavarat">getTavarat</option></select></td>
+            <td> <select><option value="tavarat">hyvä</option></select></td>
+            <td> <select><option value="tavarat">getTavarat</option></select></td>
+            <td><button type="submit" class="btn btn-default">Lisää tavara</button></td>
+        </tr>
+    </tbody>
+
+</table>
+
+{% endblock %}
