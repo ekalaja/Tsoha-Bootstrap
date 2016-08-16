@@ -16,11 +16,12 @@ vari varchar(50)
 
 CREATE TABLE Tavara(
 id SERIAL PRIMARY KEY,
-ideaali_id INTEGER REFERENCES Ideaali(id),
-kayttaja_id INTEGER REFERENCES Kayttaja(id),
+ideaali_id INTEGER REFERENCES Ideaali(id) NOT NULL,
+kayttaja_id INTEGER REFERENCES Kayttaja(id) NOT NULL,
+vaihtokohde_id INTEGER REFERENCES Ideaali(id),
 kunto varchar(50),
 lukittu boolean DEFAULT FALSE,
-lisatty TIMESTAMP
+lukitus_aika TIME
 );
 
 CREATE TABLE Tarjous(

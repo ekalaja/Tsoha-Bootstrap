@@ -8,21 +8,28 @@
             <th>Nimi</th>
             <th>Kunto</th>
             <th>Vaihtokohde</th>
-            <th>Lisäyspäivä</th>
             <th>Tila</th>
             <th></th>
         </tr>
     </thead>
 
     <tbody>
+        {% for tavara in tavarat %}
+        {% if tavara.id == 1 %}
         <tr>
-            <td>getTavara</td>
-            <td>getKunto</td>
-            <td>getKohdeJosLaitettu</td>
-            <td>getTime</td>
-            <td><label class="label label-danger">lukittu?</label></td>
+            <td><a href="{{base_path}}/tavara/{{tavara.id}}">{{tavara.name}}</a></td>
+            <td><a href="{{base_path}}/tavara/{{tavara.id}}">{{tavara.name}}</a></td>
+            <td><a>{ideaali.id}</a></td>
+            {% if tavara.lukittu %}
+            <td><label class="label label-danger">lukittu</label></td>
+            {% else %}
+            <td><label class="label label-green">vapaana</label></td>
+            {% endif %}
             <td><a class="btn btn-default btn-sm" href="#">Poista</a></td>
         </tr>
+        {% endif %}
+        {% endfor %}
+
     </tbody>
 </table>
 

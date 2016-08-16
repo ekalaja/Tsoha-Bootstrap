@@ -9,7 +9,23 @@
   });
   
   $routes->get('/hiekkaa', function() { //testiä
-    HelloWorldController::hiekkaa();
+      TavaratController::index();
+  });
+  
+  $routes->get('/ideaali', function() { //testiä
+      IdeaalitController::index();
+  });
+  
+  $routes->post('/ideaali', function(){
+  IdeaalitController::store();
+  });
+  
+  $routes->post('/ideaali/poista', function(){
+  IdeaalitController::delete();
+  });
+  
+  $routes->get('ideaali/new', function() {
+      IdeaaliController::create();
   });
   
   $routes->get('/kirjautuminen', function() { 

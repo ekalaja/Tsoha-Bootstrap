@@ -6,17 +6,22 @@
     <thead>
         <tr>
             <th>Tavara</th>
-            <th>Käyttäjä</th>
-            <th>Vaihtokohteet</th>
+            <th>Omistaja</th>
+            <th>Vaihtokohde</th>
         </tr>
     </thead>
     <tbody>
       <!-- Listataan tavarat taulusta k-tavara -->
+      {% for tavara in tavarat %}
+      {% if tavara.lukittu == FALSE %}
+      <!--boolean lisätty testidataan. Ei kuitenkaan näy lukittu = true?-->
       <tr>
-        <td><a href="#">Tavara taulusta k-tavara</a></td>
-        <td>käyttäjänTunnus</td>
+        <td><a href="{{base_path}}/tavara/{{tavara.id}}">{{tavara.name}}</a></td>
+        <td>{{tavara.kayttaja_id}}</td>
         <td>Vaihtoehdotus(jos on)</td>
       </tr>
+      {% endif %}
+      {% endfor %}
     </tbody>
 </table>
 {% endblock %}

@@ -1,0 +1,52 @@
+{% extends "base.html" %}
+{% block content %}
+<h1>Selaa ideaaleja</h1>
+
+<table class="table table-striped table-bordered">
+    <thead>
+        <tr>
+            <th>Nimi</th>
+            <th>Luokka</th>
+            <th>Väri</th>
+            <th></th>
+        </tr>
+    </thead>
+
+    <tbody>
+        {% for ideaali in ideaalit %}
+        <tr>
+            <td>{{ideaali.nimi}}</td>
+            <td>{{ideaali.luokka}}</td>
+            <td>{{ideaali.vari}}</td>
+            <td><a class="btn btn-danger btn-sm">Poista</a></td>
+        </tr>
+        {% endfor %}
+
+    </tbody>
+</table>
+
+<h3>Lisää ideaali</h3>
+<form method="post", action="{{base_path}}/ideaali">
+    <div class="form-group">
+      <label>Nimi</label>
+      <input type="text" name="nimi" class="form-control">
+    </div>
+
+    <div class="form-group">
+      <label>Luokka</label>
+      <input type="text" name="luokka" class="form-control">
+    </div>
+
+    <div class="form-group">
+      <label>Väri</label>
+      <input type="text" name="vari" class="form-control">
+    </div>
+
+    <div class="form-group">
+      <button type="submit" class="btn btn-primary">Lisää</button>
+    </div>
+
+</form>
+
+
+{% endblock %}
