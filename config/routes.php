@@ -1,33 +1,45 @@
 <?php
 
-  $routes->get('/', function() {
+$routes->get('/', function() {
     HelloWorldController::index();
-  });
+});
 
-  $routes->get('/hiekkalaatikko', function() {
+$routes->get('/hiekkalaatikko', function() {
     HelloWorldController::sandbox();
+});
+
+$routes->get('/tavarat', function() {
+    TavaratController::index();
+});
+
+$routes->get('/tavarat/:id', function($id) {
+    TavaratController::show($id);
+});
+
+$routes->get('/ideaalit', function() { 
+    IdeaalitController::index();
+});
+
+$routes->post('/ideaalit', function() {
+    IdeaalitController::store();
+});
+
+$routes->post('/ideaalit/:id/destroy', function($id) {
+    IdeaalitController::destroy($id);
+});
+
+//$routes->get('ideaali/new', function() {
+//    IdeaalitController::create();
+//});
+
+  $routes->get('/ideaali/:id', function($id) {
+      IdeaalitController::show($id);
   });
-  
-  $routes->get('/hiekkaa', function() { //testiä
-      TavaratController::index();
-  });
-  
-  $routes->get('/ideaali', function() { //testiä
-      IdeaalitController::index();
-  });
-  
-  $routes->post('/ideaali', function(){
-  IdeaalitController::store();
-  });
-  
-  $routes->post('/ideaali/poista', function(){
-  IdeaalitController::delete();
-  });
-  
-  $routes->get('ideaali/new', function() {
-      IdeaaliController::create();
-  });
-  
-  $routes->get('/kirjautuminen', function() { 
+//
+//$routes->get('/ideaali/1', function() {
+//    HelloWorldController::kirjautuminen();
+//});
+
+$routes->get('/kirjautuminen', function() {
     HelloWorldController::kirjautuminen();
-  });
+});

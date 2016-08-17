@@ -52,9 +52,9 @@ class Ideaali extends BaseModel {
         $this->id = $row['id'];
     }
     
-    public function delete(){
+    public function destroy($id){
         $query = DB::connection()->prepare('DELETE FROM Ideaali WHERE id :id LIMIT 1');
-        $query->execute(array('id'=> $this->id));
+        $query->execute(array('id'=> $id));
     }
 
 }

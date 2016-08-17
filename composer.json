@@ -7,7 +7,6 @@
             "app/models/kayttaja.php",
             "app/models/tavara.php",
             "app/models/ideaali.php"
-
         ]
     },
     "require": {

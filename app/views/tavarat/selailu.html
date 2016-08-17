@@ -16,9 +16,13 @@
       {% if tavara.lukittu == FALSE %}
       <!--boolean lisätty testidataan. Ei kuitenkaan näy lukittu = true?-->
       <tr>
-        <td><a href="{{base_path}}/tavara/{{tavara.id}}">{{tavara.name}}</a></td>
+        <td><a href="{{base_path}}/tavarat/{{tavara.id}}">{{tavara.nimi}}</a></td>
         <td>{{tavara.kayttaja_id}}</td>
-        <td>Vaihtoehdotus(jos on)</td>
+        {% if tavara.vaihtokohde==null %}
+        <td>ei määritettyä kohdetta</td
+        {% else %}
+        <td>{{tavara.vaihtokohde_id}}</td>
+        {% endif %}
       </tr>
       {% endif %}
       {% endfor %}

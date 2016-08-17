@@ -8,14 +8,14 @@
 
 class Tavara extends BaseModel {
 
-    public $id, $ideaali_id, $kayttaja_id, $kunto, $lukittu, $lukitus_aika;
+    public $id, $ideaali_id, $kayttaja_id, $kunto, $lukittu, $lukitus_aika, $nimi, $k_nimi;
 
     public function __construct($attributes) {
         parent::__construct($attributes);
     }
 
     public static function all() {
-        $query = DB::connection()->prepare('SELECT * FROM Tavara');
+        $query = DB::connection()->prepare('SELECT Tavara.id, Tavara.ideaali_id, Tavara.kayttaja_id, Tavara.kunto, Tavara.lukittu, Tavara.vaihtokohde_id, Tavara.lukitus_aika, Ideaali.nimi FROM Tavara LEFT JOIN Ideaali ON Tavara.ideaali_id=Ideaali.id');
         $query->execute();
 
         $rows = $query->fetchAll();
@@ -29,16 +29,17 @@ class Tavara extends BaseModel {
                 'kunto' => $row['kunto'],
                 'vaihtokohde_id' => $row['vaihtokohde_id'],
                 'lukittu' => $row['lukittu'],
-                'lukitus_aika' => $row['lukitus_aika']
+                'lukitus_aika' => $row['lukitus_aika'],
+                'nimi' => $row['nimi']
             ));
         }
         return $tavarat;
     }
     public static function find($id){
-        $query = DB::connection()->prepare('SELECT * FROM Tavara WHERE id = :id LIMIT 1');
+        $query = DB::connection()->prepare('SELECT Kayttaja.nimi AS k_nimi, Tavara.id, Tavara.ideaali_id, Tavara.kayttaja_id, Tavara.kunto, Tavara.lukittu, Tavara.vaihtokohde_id, Tavara.lukitus_aika, Ideaali.nimi FROM Tavara LEFT JOIN Ideaali ON Tavara.ideaali_id=Ideaali.id LEFT JOIN Kayttaja ON Kayttaja.id=Tavara.kayttaja_id WHERE Tavara.id = :id LIMIT 1');
         $query->execute(array('id'=> $id));
-        
         $row = $query->fetch();
+        
         if($row){
             $tavara = new Tavara(array(
                 'id' => $row['id'],
@@ -46,8 +47,12 @@ class Tavara extends BaseModel {
                 'kayttaja_id' => $row['kayttaja_id'],
                 'kunto' => $row['kunto'],
                 'lukittu' => $row['lukittu'],
-                'lukitus_aika' => $row['lukitus_aika']
+                'lukitus_aika' => $row['lukitus_aika'],
+                'vaihtokohde_id' => $row['vaihtokohde_id'],
+                'nimi' => $row['nimi'],
+                'k_nimi' => $row['k_nimi']
             ));
+            
             return $tavara;
         }
         return null;

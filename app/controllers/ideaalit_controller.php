@@ -5,7 +5,14 @@ class IdeaalitController extends BaseController {
     public static function index() {
         $ideaalit = Ideaali::all();
 
-        View::make('selaaIdeaaleja.html', array('ideaalit' => $ideaalit));
+        View::make('ideaalit/selaIdeaaleja.html', array('ideaalit' => $ideaalit));
+//        View::make('home.html');
+    }
+
+    public static function show($id) {
+        $ideaali = Ideaali::find($id);
+
+        View::make('ideaalit/ideaali.html', array('ideaali' => $ideaali));
     }
 
     public static function store() {
@@ -20,9 +27,11 @@ class IdeaalitController extends BaseController {
         $ideaali->save();
         Redirect::to('/ideaali');
     }
-    
-    public static function delete() {
-        Ideaali::delete();
+
+    public static function destroy($id) {
+        $ideaali = new Ideaali(array('id' => $id));
+        $ideaali->destroy();
+        Redirect::to('/ideaali');
     }
 
 }
