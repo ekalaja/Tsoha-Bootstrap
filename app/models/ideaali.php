@@ -56,5 +56,16 @@ class Ideaali extends BaseModel {
         $query = DB::connection()->prepare('DELETE FROM Ideaali WHERE id :id LIMIT 1');
         $query->execute(array('id'=> $id));
     }
+    
+//    public function validate_nimi(){
+//        $errors = array();
+//        if($this->nimi == '' || $this->nimi==null) {
+//            $errors[] = 'Nimi ei saa olla tyhjä';
+//        }
+//        if(strlen($this->nimi) < 3) {
+//            $errors[] = 'Nimen tulee olla vähintään kolme merkkiä pitkä!';
+//        }
+//        return $errors;
+//    }
 
 }

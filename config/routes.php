@@ -28,11 +28,11 @@ $routes->post('/ideaalit/:id/destroy', function($id) {
     IdeaalitController::destroy($id);
 });
 
-//$routes->get('ideaali/new', function() {
-//    IdeaalitController::create();
-//});
+$routes->get('ideaalit/new', function() {
+    IdeaalitController::create();
+});
 
-  $routes->get('/ideaali/:id', function($id) {
+  $routes->get('/ideaalit/:id', function($id) {
       IdeaalitController::show($id);
   });
 //

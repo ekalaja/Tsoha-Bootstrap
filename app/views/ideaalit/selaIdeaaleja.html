@@ -15,9 +15,9 @@
 
     <tbody>
         {% for ideaali in ideaalit %}
-    <form method="post" action="{{base_path}}/ideaali/{{ideaali.id}}/destroy" style="display: inline-block;">
+    <form method="post" action="{{base_path}}/ideaalit/{{ideaali.id}}/destroy" style="display: inline-block;">
         <tr>
-            <td><a href="{{base_path}}/ideaali/{{ideaali.id}}">{{ideaali.nimi}}</a></td>
+            <td><a href="{{base_path}}/ideaalit/{{ideaali.id}}">{{ideaali.nimi}}</a></td>
             <td>{{ideaali.luokka}}</td>
             <td>{{ideaali.vari}}</td>
             <td><button type="submit" class="btn btn-danger">Poista</button></td>
@@ -34,7 +34,7 @@
 </table>
 
 <h3>Lisää ideaali</h3>
-<form method="post" action="{{base_path}}/ideaali">
+<form method="post" action="{{base_path}}/ideaalit">
     <div class="form-group">
         <label>Nimi</label>
         <input type="text" name="nimi" class="form-control">

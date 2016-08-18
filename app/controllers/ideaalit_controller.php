@@ -25,13 +25,13 @@ class IdeaalitController extends BaseController {
         ));
 //        Kint::dump($params);
         $ideaali->save();
-        Redirect::to('/ideaali');
+        Redirect::to('/ideaalit');
     }
 
     public static function destroy($id) {
         $ideaali = new Ideaali(array('id' => $id));
         $ideaali->destroy();
-        Redirect::to('/ideaali');
+        Redirect::to('/ideaalit');
     }
 
 }
