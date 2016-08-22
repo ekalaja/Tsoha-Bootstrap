@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{% block content %}
+
+
+{% if user_logged_in %}
+<!--<h1>Käyttäjän {{user_logged_in.name}} pelikirjasto</h1>-->
+<h2>Muokkaa tietojasi</h2>
+<form action="action_page.php">
+    Nimi:<br>
+    <input type="text" name="etunimi" value="{{user_logged_in.nimi}}"><br>
+    email:<br>
+    <input type="text" name="email" value="{{user_logged_in.email}}"><br><br>
+    <input type="submit" value="Muuta">
+</form>
+<br><br>
+
+<a href="{{base_path}}/tavarat/omatTavarat.html">Omat tavarat</a>
+
+{% endif %}
+
+
+{% endblock %}

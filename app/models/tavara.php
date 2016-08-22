@@ -35,6 +35,29 @@ class Tavara extends BaseModel {
         }
         return $tavarat;
     }
+    
+    public static function kayttajanTavarat($id) {
+        $query = DB::connection()->prepare('SELECT Tavara.id, Tavara.ideaali_id, Tavara.kayttaja_id, Tavara.kunto, Tavara.lukittu, Tavara.vaihtokohde_id, Tavara.lukitus_aika, Ideaali.nimi FROM Tavara LEFT JOIN Ideaali ON Tavara.ideaali_id=Ideaali.id LEFT JOIN Kayttaja ON Kayttaja.id= :id ');
+        $query->execute(array('id' => $id));
+
+        $rows = $query->fetchAll();
+        $tavarat = array();
+
+        foreach ($rows as $row) {
+            $tavarat[] = new Tavara(array(
+                'id' => $row['id'],
+                'ideaali_id' => $row['ideaali_id'],
+                'kayttaja_id' => $row['kayttaja_id'],
+                'kunto' => $row['kunto'],
+                'vaihtokohde_id' => $row['vaihtokohde_id'],
+                'lukittu' => $row['lukittu'],
+                'lukitus_aika' => $row['lukitus_aika'],
+                'nimi' => $row['nimi']
+            ));
+        }
+        return $tavarat;
+    }
+    
     public static function find($id){
         $query = DB::connection()->prepare('SELECT Kayttaja.nimi AS k_nimi, Tavara.id, Tavara.ideaali_id, Tavara.kayttaja_id, Tavara.kunto, Tavara.lukittu, Tavara.vaihtokohde_id, Tavara.lukitus_aika, Ideaali.nimi FROM Tavara LEFT JOIN Ideaali ON Tavara.ideaali_id=Ideaali.id LEFT JOIN Kayttaja ON Kayttaja.id=Tavara.kayttaja_id WHERE Tavara.id = :id LIMIT 1');
         $query->execute(array('id'=> $id));

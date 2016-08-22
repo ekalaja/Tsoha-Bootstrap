@@ -10,3 +10,7 @@ Yleisiä linkkejä:
 ## Työn aihe
 
  [Tavaran vaihto](http://advancedkittenry.github.io/suunnittelu_ja_tyoymparisto/aiheet/Tavaranvaihto.html) 
+
+* Sisään kirjautuminen
+käyttäjätunnus: make
+salasana: sala

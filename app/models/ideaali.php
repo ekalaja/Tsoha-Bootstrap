@@ -1,13 +1,12 @@
 <?php
 
-
-
 class Ideaali extends BaseModel {
 
     public $id, $nimi, $luokka, $vari;
 
     public function __construct($attributes) {
         parent::__construct($attributes);
+        $this->validators = array('validate_nimi', 'validate_luokka', 'validate_vari', 'validate_uniikki_nimi');
     }
 
     public static function all() {
@@ -27,12 +26,13 @@ class Ideaali extends BaseModel {
         }
         return $ideaalit;
     }
-    public static function find($id){
+
+    public static function find($id) {
         $query = DB::connection()->prepare('SELECT * FROM Ideaali WHERE id = :id LIMIT 1');
-        $query->execute(array('id'=> $id));
-        
+        $query->execute(array('id' => $id));
+
         $row = $query->fetch();
-        if($row){
+        if ($row) {
             $ideaali = new Ideaali(array(
                 'id' => $row['id'],
                 'nimi' => $row['nimi'],
@@ -43,29 +43,25 @@ class Ideaali extends BaseModel {
         }
         return null;
     }
-    
-    public function save(){
+
+    public function save() {
         $query = DB::connection()->prepare('INSERT INTO Ideaali (nimi, luokka, vari) VALUES (:nimi, :luokka, :vari) RETURNING id');
         $query->execute(array('nimi' => $this->nimi, 'luokka' => $this->luokka, 'vari' => $this->vari));
-        
+
         $row = $query->fetch();
         $this->id = $row['id'];
     }
     
-    public function destroy($id){
-        $query = DB::connection()->prepare('DELETE FROM Ideaali WHERE id :id LIMIT 1');
-        $query->execute(array('id'=> $id));
+    public function update() {
+        $query = DB::connection()->prepare('UPDATE Ideaali SET nimi=:nimi, luokka=:luokka, vari=:vari WHERE Ideaali.id=:id');
+        $query->execute(array('nimi' => $this->nimi, 'luokka' => $this->luokka, 'vari' => $this->vari, 'id' => $this->id));
+
+//        $row = $query->fetch();
     }
-    
-//    public function validate_nimi(){
-//        $errors = array();
-//        if($this->nimi == '' || $this->nimi==null) {
-//            $errors[] = 'Nimi ei saa olla tyhjä';
-//        }
-//        if(strlen($this->nimi) < 3) {
-//            $errors[] = 'Nimen tulee olla vähintään kolme merkkiä pitkä!';
-//        }
-//        return $errors;
-//    }
+
+    public function destroy() {
+        $query = DB::connection()->prepare('DELETE FROM Ideaali WHERE id= :id');
+        $query->execute(array('id' => $this->id));
+    }
 
 }

@@ -4,13 +4,25 @@
 <div class="page-header">
     <h1>Tervetuloa  tavaranvaihtopalveluun!</h1>
 
+    {% if(user_logged_in) %}
+    <h2>Olet kirjautuneena sisään</h2>
+    {% endif %}
+
+    {% if(viesti != null) %}
+    <div class="alert alert-success">
+        {{viesti}}
+    </div>
+    {% endif %}
+
 </div>
 <p>Sivulla voi vaihtaa keräiltäviä asioita muiden käyttäjien kanssa. Sivuston käyttäminen vaatii kirjautumisen</p>
-<p>
+<!--<p>
     <a href="http://tsoha.github.io" class="btn btn-primary btn-lg">Tutustu materiaaliin <span class="glyphicon glyphicon-chevron-right"></span></a>
-</p>
-
+</p>-->
+{% if(user_logged_in == FALSE) %}
 <p>
     <a href="http://ekalaja.users.cs.helsinki.fi/tkhtyo/kirjautuminen" class="btn btn-primary btn-lg">Kirjaudu sisään <span class="glyphicon glyphicon-chevron-right"></span></a>
 </p>
+{% endif %}
+
 {% endblock %}

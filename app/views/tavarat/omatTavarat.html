@@ -17,9 +17,9 @@
         {% for tavara in tavarat %}
         {% if tavara.id == 1 %}
         <tr>
-            <td><a href="{{base_path}}/tavara/{{tavara.id}}">{{tavara.name}}</a></td>
-            <td><a href="{{base_path}}/tavara/{{tavara.id}}">{{tavara.name}}</a></td>
-            <td><a>{ideaali.id}</a></td>
+            <td><a href="{{base_path}}/tavara/{{tavara.id}}">{{tavara.nimi}}</a></td>
+            <td>{{tavara.kunto}}</td>
+            <td><a></a></td>
             {% if tavara.lukittu %}
             <td><label class="label label-danger">lukittu</label></td>
             {% else %}

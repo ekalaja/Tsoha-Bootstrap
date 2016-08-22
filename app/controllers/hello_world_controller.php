@@ -10,16 +10,25 @@ class HelloWorldController extends BaseController {
     }
 
     public static function sandbox() {
-        $kayttajat = Kayttaja::all();
-        $mattiko = Kayttaja::find(1);
-        $tavarat = Tavara::all();
-        $tavarako = Tavara::find(1);
+        $dark = new Ideaali(array(
+            'nimi' => 'doge',
+            'luokka' => '',
+            'vari' => 'musta'
+        ));
+        $errors = $dark->errors();
+        Kint::dump($errors);
+        
+        
+//        $kayttajat = Kayttaja::all();
+//        $mattiko = Kayttaja::find(1);
+//        $tavarat = Tavara::all();
+//        $tavarako = Tavara::find(1);
         // Testaa koodiasi täällä
 //      View::make('helloworld.html');
-        Kint::dump($kayttajat);
-        Kint::dump($mattiko);
-        Kint::dump($tavarat);
-        Kint::dump($tavarako);
+//        Kint::dump($kayttajat);
+//        Kint::dump($mattiko);
+//        Kint::dump($tavarat);
+//        Kint::dump($tavarako);
     }
 
 

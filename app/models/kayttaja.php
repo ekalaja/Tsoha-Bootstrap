@@ -44,4 +44,17 @@ class Kayttaja extends BaseModel {
         }
         return null;
     }
+    
+    public static function authenticate($tunnus, $salasana){
+        $query = DB::connection()->prepare('SELECT * FROM Kayttaja WHERE tunnus = :tunnus AND salasana = :salasana LIMIT 1');
+        $query->execute(array('tunnus' => $tunnus, 'salasana' => $salasana));
+        $row = $query->fetch();
+        
+        if($row){
+            $kayttaja = new Kayttaja($row);
+            return $kayttaja;
+        }else{
+            return null;
+        }
+    }
 }

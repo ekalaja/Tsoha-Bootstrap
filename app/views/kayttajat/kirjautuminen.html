@@ -2,18 +2,27 @@
 {% block content %}
   <h1>Kirjaudu sisään</h1>
 
+  {% if(viesti) %}
+  <div class="alert-danger">Kirjaudu ensin sisään!</div>
+  {% endif %}
+  
+  {% if(error != null) %}
+<div class="alert alert-danger">
+    {{error}}
+</div>
+{% endif %}
   <!-- Kaikki lomakkeen elementit form-tagin sisään -->
-  <form>
+  <form method="post" action="{{base_path}}/kirjautuminen">
     <!-- Tekstikenttä käyttäjätunnukselle -->
     <div class="form-group">
       <label>Käyttäjätunnus</label>
-      <input type="text" class="form-control">
+      <input type="text" class="form-control" name="tunnus" value="{{tunnus}}">
     </div>
 
     <!-- Salasanakenttä salasanalle -->
     <div class="form-group">
       <label>Salasana</label>
-      <input type="text" class="form-control">
+      <input type="password" class="form-control" name="salasana">
     </div>
 
     <button type="submit" class="btn btn-primary">Kirjaudu sisään</button>
