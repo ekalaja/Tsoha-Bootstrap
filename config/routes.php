@@ -29,7 +29,7 @@ $routes->get('/tavarat/vaihdot.html', function() {
 });
 
 $routes->post('/tarjoukset/:id', function($id) {
-    TarjousController::poistaTarjous($id);
+    TarjousController::destroy($id);
 });
 
 $routes->get('/tavarat/:id', function($id) {

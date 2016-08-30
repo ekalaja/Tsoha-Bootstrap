@@ -7,6 +7,7 @@
         <tr>
             <th>Tavara</th>
             <th>Omistaja</th>
+            <th>Kunto</th>
             <th>Vaihtokohde</th>
         </tr>
     </thead>
@@ -18,6 +19,7 @@
       <tr>
         <td><a href="{{base_path}}/tavarat/{{tavara.id}}">{{tavara.nimi}}</a></td>
         <td>{{tavara.k_tunnus}}</td>
+        <td>{{tavara.kunto}}</td>
         {% if tavara.vaihtokohde==null %}
         <td>ei määritettyä kohdetta</td
         {% else %}
