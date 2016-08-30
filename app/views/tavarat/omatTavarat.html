@@ -1,6 +1,13 @@
 {% extends "base.html" %}
 {% block content %}
+{% import "macros/forms.html" as forms %}
 <h1>Omat tavarat</h1>
+
+{% if(viesti != null) %}
+<div class="alert alert-success">
+    {{viesti}}
+</div>
+{% endif %}
 
 <table class="table table-striped table-bordered">
     <thead>
@@ -10,24 +17,26 @@
             <th>Vaihtokohde</th>
             <th>Tila</th>
             <th></th>
+            <th></th>
         </tr>
     </thead>
 
     <tbody>
         {% for tavara in tavarat %}
-        {% if tavara.id == 1 %}
+
+
         <tr>
-            <td><a href="{{base_path}}/tavara/{{tavara.id}}">{{tavara.nimi}}</a></td>
+            <td><a href="{{base_path}}/tavarat/{{tavara.id}}">{{tavara.nimi}}</a></td>
             <td>{{tavara.kunto}}</td>
-            <td><a></a></td>
-            {% if tavara.lukittu %}
+            <td>{{tavara.vaihtokohde_nimi}}</td>
+            {% if tavara.lukittu == TRUE %}
             <td><label class="label label-danger">lukittu</label></td>
             {% else %}
-            <td><label class="label label-green">vapaana</label></td>
+            <td><label class="label label-default">vapaana</label></td>
             {% endif %}
-            <td><a class="btn btn-default btn-sm" href="#">Poista</a></td>
+            <td><label></label></td>
+            <td> {{forms.destroy_button("#{base_path}/tavarat/#{tavara.id}/destroy")}} </td>
         </tr>
-        {% endif %}
         {% endfor %}
 
     </tbody>
@@ -44,16 +53,42 @@
         </tr>
     </thead>
 
-    <tbody>
-        <tr>
 
-            <td> <select><option value="tavarat">getTavarat</option></select></td>
-            <td> <select><option value="tavarat">hyvä</option></select></td>
-            <td> <select><option value="tavarat">getTavarat</option></select></td>
-            <td><button type="submit" class="btn btn-default">Lisää tavara</button></td>
-        </tr>
-    </tbody>
+    <form method="post" action="{{base_path}}/tavarat/omatTavarat.html">
+        <input type="hidden" name="kayttaja_id" value="{{user_logged_in.id}}" </input>
+        <tbody>
+            <tr>
+                <td> <select name="tavara">
+                        {% for ideaali in ideaalit %}
+                        <option value="{{ideaali.id}}">
+                            {{ideaali.nimi}}
+                        </option>
+                        {% endfor %}
+                    </select>
+                </td>
+                <td> <select name="kunto">
+                        <option value="hyva">hyvä</option>
+                        <option value="kohtalainen">kohtalainen</option>
+                        <option value="huono">huono</option>
+                    </select>
+                </td>
+                <td> <select name="kohde">
+                        <option></option>
+                        {% for ideaali in ideaalit %}
+                        <option value="{{ideaali.id}}">
+                            {{ideaali.nimi}}
+                        </option>
+                        {% endfor %}
+                    </select>
+                </td>
+                <td>
+                    <button type="submit" class="btn btn-default">Lisää tavara</button>
+                </td>
+            </tr>
+        </tbody>
+    </form>
 
 </table>
+
 
 {% endblock %}

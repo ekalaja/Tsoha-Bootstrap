@@ -25,6 +25,7 @@ lukitus_aika TIME
 );
 
 CREATE TABLE Tarjous(
+id SERIAL PRIMARY KEY,
 kohde_id INTEGER REFERENCES Tavara(id),
 tarjottava_id INTEGER REFERENCES Tavara(id),
 lisatty TIMESTAMP

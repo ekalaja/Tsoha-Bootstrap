@@ -44,8 +44,8 @@ class IdeaalitController extends BaseController {
     }
 
     public static function store() {
-        $params = $_POST;
         $ideaalit = Ideaali::all();
+        $params = $_POST;
         $attributes = array(
             'nimi' => $params['nimi'],
             'luokka' => $params['luokka'],
@@ -68,7 +68,7 @@ class IdeaalitController extends BaseController {
     public static function destroy($id) {
         $ideaali = new Ideaali(array('id' => $id));
         $ideaali->destroy();
-        Redirect::to('/ideaalit', array('message' => 'Peli poistettu onnistuneesti.'));
+        Redirect::to('/ideaalit', array('viesti' => 'Ideaali poistettu.'));
     }
 
 }

@@ -1,6 +1,6 @@
 <?php
 
-class Ideaali extends BaseModel {
+class Testi extends BaseModel {
 
     public $id, $nimi, $luokka, $vari;
 

@@ -26,6 +26,17 @@ class BaseModel {
         }
         return $errors;
     }
+    
+     public function validate_email() {
+        $errors = array();
+        if ($this->email == '' || $this->email == null) {
+            $errors[] = 'Sähköposti osoite on lisättävä!';
+        }
+        if (strlen($this->email) < 3 || (strpos($this->email, '@')) == false ) {
+            $errors[] = 'Sähköposti osoite on virheellinen!';
+        }
+        return $errors;
+    }
 
     public function validate_uniikki_nimi() {
         $query = DB::connection()->prepare('SELECT * FROM Ideaali WHERE nimi = :nimi LIMIT 1');
