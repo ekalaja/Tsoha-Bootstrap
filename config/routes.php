@@ -1,8 +1,5 @@
 <?php
 
-//$routes->get('/', function() {
-//    HelloWorldController::index();
-//});
 
 $routes->get('/', function() {
     KayttajaController::index();
@@ -18,6 +15,10 @@ $routes->get('/tavarat', function() {
 
 $routes->get('/tavarat/omatTavarat.html', function() {
     TavaratController::kayttajanTavarat();
+});
+
+$routes->post('/tarjous/:id', function($id) {
+    TarjousController::teeTarjous($id);
 });
 
 $routes->post('/tavarat/omatTavarat.html', function() {
@@ -68,13 +69,6 @@ $routes->get('/ideaalit/:id/edit', function($id) {
 $routes->post('/ideaalit/:id/edit', function($id) {
     IdeaalitController::update($id);
 });
-//
-//$routes->get('/ideaali/1', function() {
-//    HelloWorldController::kirjautuminen();
-//});
-//$routes->get('/kirjautuminen', function() {
-//    HelloWorldController::kirjautuminen();
-//});
 
 $routes->get('/kirjautuminen', function() {
     KayttajaController::kirjautuminen();
@@ -95,8 +89,6 @@ $routes->get('/kayttajat', function() {
 $routes->post('/kayttajat/:id', function($id) {
     KayttajaController::update($id);
 });
-
-
 
 $routes->post('/tavarat/lukitut/:id', function($id) {
     TavaratController::lukitse($id);

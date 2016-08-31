@@ -26,7 +26,6 @@ lukitus_aika TIME
 
 CREATE TABLE Tarjous(
 id SERIAL PRIMARY KEY,
-kohde_id INTEGER REFERENCES Tavara(id),
-tarjottava_id INTEGER REFERENCES Tavara(id),
-lisatty TIMESTAMP
+kohde_id INTEGER NOT NULL REFERENCES Tavara(id) ON DELETE CASCADE,
+tarjottava_id INTEGER NOT NULL REFERENCES Tavara(id) ON DELETE CASCADE
 );

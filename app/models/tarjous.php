@@ -61,4 +61,11 @@ class Tarjous extends BaseModel {
         }
         return $ehdotetut;
     }
+    
+    public function save() {
+        $query = DB::connection()->prepare('INSERT INTO Tarjous (tarjottava_id, kohde_id) VALUES (:tarjottava_id, :kohde_id) RETURNING id');
+        $query->execute(array('tarjottava_id' => $this->tarjottava_id, 'kohde_id' => $this->kohde_id));
+        $row = $query->fetch();
+        $this->id = $row['id'];
+    }
 }

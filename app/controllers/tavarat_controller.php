@@ -16,11 +16,13 @@ class TavaratController extends BaseController {
     public static function show($id) {
         self::check_logged_in();
         $tavara = Tavara::find($id);
-//        Kint::dump($tavara->kayttaja_id);
+        $omatVapaat = Tavara::omatVapaatIdJaNimi($_SESSION['id']);
+//        Kint::dump($tavara);
         if ($_SESSION['id'] == $tavara->kayttaja_id) {
             View::make('tavarat/tavara.html', array('tavara' => $tavara));
         }else{
-            View::make('tavarat/vierasTavara.html', array('tavara' => $tavara));
+//            Kint::dump($omatVapaat);
+            View::make('tavarat/vierasTavara.html', array('tavara' => $tavara, 'omatVapaat' => $omatVapaat));
         }
     }
 
@@ -31,6 +33,7 @@ class TavaratController extends BaseController {
 //        Kint::dump($tavarat);
         View::make('tavarat/omatTavarat.html', array('tavarat' => $tavarat, 'ideaalit' => $ideaalit));
     }
+    
 
     public static function store() {
         $params = $_POST;

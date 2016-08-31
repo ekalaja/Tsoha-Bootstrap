@@ -64,6 +64,21 @@ class Tavara extends BaseModel {
         }
         return $tavarat;
     }
+    
+    public static function omatVapaatIdJaNimi($id) {
+        $query = DB::connection()->prepare('SELECT Tavara.id, Ideaali.nimi FROM Kayttaja LEFT JOIN Tavara ON Kayttaja.id=Tavara.kayttaja_id LEFT JOIN Ideaali ON Ideaali.id=Tavara.ideaali_id WHERE Kayttaja.id=:id');
+        $query->execute(array('id' => $id));
+        $rows = $query->fetchAll();
+        $omatVapaat = array();
+        
+        foreach ($rows as $row) {
+            $omatVapaat[] = new Tavara(array(
+                'id' => $row['id'],
+                'nimi' => $row['nimi']
+            ));
+        }
+        return $omatVapaat;
+    }
 
     
 

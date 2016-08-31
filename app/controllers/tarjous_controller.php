@@ -18,6 +18,19 @@ Class TarjousController extends BaseController {
         $tarjous->destroy();
 //        Redirect::to('/tavarat');
     }
+    
+    public static function teeTarjous($id) {
+        $params = $_POST;
+        $attributes = array(
+            'kohde_id' => $id,
+            'tarjottava_id' => $params['omaTavara']
+        );
+
+        $tarjous = new Tarjous($attributes);
+        Kint::dump($tarjous);
+        $tarjous->save();
+        Redirect::to('/tavarat/vaihdot.html', array('viesti' => 'Tarjous lisätty!'));
+    }
 
     public static function destroy($id) {
         $tarjous = new Tarjous(array('id' => $id));

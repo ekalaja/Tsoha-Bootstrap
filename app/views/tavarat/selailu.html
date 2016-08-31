@@ -20,7 +20,7 @@
         <td><a href="{{base_path}}/tavarat/{{tavara.id}}">{{tavara.nimi}}</a></td>
         <td>{{tavara.k_tunnus}}</td>
         <td>{{tavara.kunto}}</td>
-        {% if tavara.vaihtokohde==null %}
+        {% if tavara.vaihtokohde %}
         <td>ei määritettyä kohdetta</td
         {% else %}
         <td>{{tavara.vaihtokohde_id}}</td>
