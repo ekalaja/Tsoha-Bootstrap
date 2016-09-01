@@ -8,11 +8,18 @@
     <h2>Olet kirjautuneena sisään</h2>
     {% endif %}
 
+    {% if(varoitus != null) %}
+    <div class="alert alert-danger">
+        {{varoitus}}
+    </div>
+    {% endif %}
+    
     {% if(viesti != null) %}
     <div class="alert alert-success">
         {{viesti}}
     </div>
     {% endif %}
+    
 
 </div>
 <p>Sivulla voi vaihtaa keräiltäviä asioita muiden käyttäjien kanssa. Sivuston käyttäminen vaatii kirjautumisen</p>

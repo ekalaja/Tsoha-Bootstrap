@@ -21,10 +21,10 @@
             <td>{{tavara.nimi}}</td>
             <td>{{tavara.kunto}}</td>
             <td>{{tavara.k_nimi}}</td>
-            {% if tavara.vaihtokohde==null %}
+            {% if tavara.vaihtokohde_nimi==null %}
             <td>ei määritettyä kohdetta</td>
             {% else %}
-            <td>{{tavara.kohde_nimi}}</td>
+            <td>{{tavara.vaihtokohde_nimi}}</td>
             {% endif %}
 
             {% if tavara.lukittu == TRUE %}

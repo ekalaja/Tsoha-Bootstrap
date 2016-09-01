@@ -9,6 +9,10 @@ $routes->get('/hiekkalaatikko', function() {
     HelloWorldController::sandbox();
 });
 
+$routes->get('/tarjous/valmis', function() {    
+    TarjousController::valmis();
+});
+
 $routes->get('/tavarat', function() {
     TavaratController::index();
 });

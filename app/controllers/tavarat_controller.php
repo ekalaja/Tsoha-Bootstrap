@@ -17,12 +17,18 @@ class TavaratController extends BaseController {
         self::check_logged_in();
         $tavara = Tavara::find($id);
         $omatVapaat = Tavara::omatVapaatIdJaNimi($_SESSION['id']);
-//        Kint::dump($tavara);
         if ($_SESSION['id'] == $tavara->kayttaja_id) {
             View::make('tavarat/tavara.html', array('tavara' => $tavara));
         }else{
-//            Kint::dump($omatVapaat);
-            View::make('tavarat/vierasTavara.html', array('tavara' => $tavara, 'omatVapaat' => $omatVapaat));
+            $arvo = Count($omatVapaat);
+//
+            $naytaVaihto;
+            if($arvo==0) {
+                $naytaVaihto = FALSE;
+            }else{
+                $naytaVaihto = TRUE;
+            }
+            View::make('tavarat/vierasTavara.html', array('tavara' => $tavara, 'omatVapaat' => $omatVapaat, 'naytaVaihto' => $naytaVaihto));
         }
     }
 
@@ -36,6 +42,7 @@ class TavaratController extends BaseController {
     
 
     public static function store() {
+        self::check_logged_in();
         $params = $_POST;
 //        Kint::dump($params);
         $attributes = array(
@@ -53,6 +60,7 @@ class TavaratController extends BaseController {
     }
 
     public static function destroy($id) {
+        self::check_logged_in();
         $tavara = new Tavara(array('id' => $id));
         $tavara->destroy();
         Redirect::to('/tavarat/omatTavarat.html', array('viesti' => 'Tavara poistettu.'));

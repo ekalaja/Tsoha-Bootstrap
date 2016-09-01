@@ -19,7 +19,7 @@
         <td>{{tavara.vaihtokohde_nimi}}</td>
     </tr>
 </table>
-
+{% if(naytaVaihto) %}
 <br>
 <h3>Ehdota vaihtoa johonkin tavaroistasi</h3>
 <form method="post" action="{{base_path}}/tarjous/{{tavara.id}}">
@@ -38,6 +38,7 @@
         </td>
     </tr> 
 </form>
+{% endif %}
 
 
 {% endblock %}

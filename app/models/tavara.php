@@ -64,13 +64,13 @@ class Tavara extends BaseModel {
         }
         return $tavarat;
     }
-    
+
     public static function omatVapaatIdJaNimi($id) {
-        $query = DB::connection()->prepare('SELECT Tavara.id, Ideaali.nimi FROM Kayttaja LEFT JOIN Tavara ON Kayttaja.id=Tavara.kayttaja_id LEFT JOIN Ideaali ON Ideaali.id=Tavara.ideaali_id WHERE Kayttaja.id=:id');
+        $query = DB::connection()->prepare('SELECT Tavara.id, Ideaali.nimi FROM Kayttaja LEFT JOIN Tavara ON Kayttaja.id=Tavara.kayttaja_id LEFT JOIN Ideaali ON Ideaali.id=Tavara.ideaali_id WHERE Kayttaja.id=:id AND Tavara.lukittu=FALSE');
         $query->execute(array('id' => $id));
         $rows = $query->fetchAll();
         $omatVapaat = array();
-        
+
         foreach ($rows as $row) {
             $omatVapaat[] = new Tavara(array(
                 'id' => $row['id'],
@@ -79,8 +79,6 @@ class Tavara extends BaseModel {
         }
         return $omatVapaat;
     }
-
-    
 
     public static function find($id) {
         $query = DB::connection()->prepare('SELECT Kayttaja.nimi AS k_nimi, Tavara.id, Tavara.ideaali_id, Tavara.kayttaja_id, Tavara.kunto, Tavara.lukittu, Tavara.vaihtokohde_id, Tavara.lukitus_aika, Ideaali.nimi FROM Tavara LEFT JOIN Ideaali ON Tavara.ideaali_id=Ideaali.id LEFT JOIN Kayttaja ON Kayttaja.id=Tavara.kayttaja_id WHERE Tavara.id = :id LIMIT 1');
@@ -102,7 +100,7 @@ class Tavara extends BaseModel {
                 'lukitus_aika' => $row['lukitus_aika'],
                 'vaihtokohde_id' => $row['vaihtokohde_id'],
                 'nimi' => $row['nimi'],
-                'kohde_nimi' => $rowKohdeNimi['vaihtokohde_nimi']
+                'vaihtokohde_nimi' => $rowKohdeNimi['vaihtokohde_nimi']
             ));
 
             return $tavara;
@@ -128,7 +126,11 @@ class Tavara extends BaseModel {
         $query->execute(array('id' => $this->id));
     }
 
-//    public static function vaihdot() {
-//        kirjoita tämä metodi
-//    }
+    public function haeTavaranOmistaja() {
+        $query = DB::connection()->prepare('SELECT kayttaja_id FROM Tavara WHERE id=:id');
+        $query->execute(array('id' => $this->id));
+        $row = $query->fetch();
+        return $row['kayttaja_id'];
+    }
+
 }

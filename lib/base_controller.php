@@ -24,8 +24,15 @@ class BaseController {
     public static function logged_in() {
         if (!isset($_SESSION['id'])) {
             return true;
-        }else{
+        } else {
             return false;
         }
     }
+
+    public static function authenticate_user_action($id) {
+        if ($_SESSION['id'] != $id) {
+            Redirect::to('/', array('varoitus' => 'Oikeudet toimintoon puuttuvat!'));
+        }
+    }
+
 }
